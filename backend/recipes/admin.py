@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import (Ingredient, Tag, Recipe, RecipeIngredient,
-                     UserShoppingCart, UserFavorites)
 
-admin.site.empty_value_display = 'Не задано' 
+from .models import (Ingredient, Recipe, RecipeIngredient, Tag, UserFavorites,
+                     UserShoppingCart)
+
+admin.site.empty_value_display = 'Не задано'
 
 
 @admin.register(Ingredient)

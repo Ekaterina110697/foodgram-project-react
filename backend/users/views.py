@@ -57,9 +57,9 @@ class UserSubscribeViewSet(UserViewSet):
                         status=status.HTTP_400_BAD_REQUEST)
 
     @action(
-            detail=False,
-            methods=['GET'],
-            permission_classes=(IsAuthenticated,)
+        detail=False,
+        methods=['GET'],
+        permission_classes=(IsAuthenticated,)
     )
     def subscriptions(self, request):
         user = request.user
@@ -76,7 +76,7 @@ class UserSubscribeViewSet(UserViewSet):
         methods=['POST', 'DELETE'],
         detail=True,
         permission_classes=(IsAuthenticated,)
-        )
+    )
     def subscribe(self, request, id):
         user = self.request.user
         author = get_object_or_404(User, id=id)

@@ -60,21 +60,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
-#}
+# }
 
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': os.getenv('POSTGRES_DB', 'foodgram'),
-       'USER': os.getenv('POSTGRES_USER', 'foodgram_user'),
-       'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-       'HOST': os.getenv('DB_HOST', ''),
-       'PORT': os.getenv('DB_PORT', 5432)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'foodgram'),
+        'USER': os.getenv('POSTGRES_USER', 'foodgram_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', 5432)
     }
 }
 
@@ -148,7 +148,7 @@ MAX_LEAGHT_COLOR = 7
 MAX_LEAGHT_SLAG = 200
 MIN_TIME_COOKING = 1
 MAX_TIME_COOKING = 3600
-MAX_LEAGHT_TEXT = 50 
+MAX_LEAGHT_TEXT = 50
 MIN_AMOUNT = 1
 MAX_AMOUNT = 1000
 PAGE_SIZE = 6
