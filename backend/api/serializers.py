@@ -239,7 +239,7 @@ class UserShoppingCartSerializer(serializers.ModelSerializer):
     """Cериализатор для списка покупок."""
     class Meta:
         model = UserShoppingCart
-        fields = ('author', 'recipe')
+        fields = ('user', 'recipe')
 
     def validate_shopping_cart(self, data):
         if UserShoppingCart.objects.filter(
@@ -260,7 +260,7 @@ class UserFavoritesSerializer(serializers.ModelSerializer):
     """Cериализатор для избранного."""
     class Meta:
         model = UserFavorites
-        fields = ('author', 'recipe')
+        fields = ('user', 'recipe')
 
     def validate_favorite(self, data):
         if UserFavorites.objects.filter(
