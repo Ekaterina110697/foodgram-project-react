@@ -66,7 +66,8 @@ docker-compose  exec  web  python  manage.py  createsuperuser
 # Проект можно посмотреть по адресу:
 https://iambestcook.ddns.net/
 
-Автор проекта: [Екатерина Курьянович](https://github.com/Ekaterina110697)
+# Автор проекта:
+[Екатерина Курьянович](https://github.com/Ekaterina110697)
 
 # Данные для входа администратора:
 Почта
