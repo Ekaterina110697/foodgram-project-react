@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost, 127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -131,7 +131,6 @@ AUTH_USER_MODEL = 'users.User'
 
 DJOSER = {
     'SERIALIZERS': {
-        'user_create': 'api.serializers.UserCreateSerializer',
         'user': 'api.serializers.UserProfileSerializer',
         'current_user': 'api.serializers.UserProfileSerializer',
     },
@@ -142,32 +141,3 @@ DJOSER = {
     'LOGIN_FIELD': 'email',
     'HIDE_USERS': False,
 }
-MAX_LEAGHT_NAME = 200
-MAX_LEAGHT_MEASUREMENT_UNIT = 200
-MAX_LEAGHT_COLOR = 7
-MAX_LEAGHT_SLAG = 200
-MIN_TIME_COOKING = 1
-MAX_TIME_COOKING = 3600
-MAX_LEAGHT_TEXT = 50
-MIN_AMOUNT = 1
-MAX_AMOUNT = 1000
-PAGE_SIZE = 6
-MAX_LEAGHT_EMAIL = 254
-MAX_LEAGHT_USER_PARAMETRS = 150
-INGRIDIENTS_FIELD = {'ingredients': 'Выберите пожалуйстя хотя бы 1 ингредиент'}
-INGRIDIENTS_UNIQUE = {'ingredients': 'Выбранный вами ингредиент не является уникальным'}
-INGRIDIENTS_NO_EXISTS = {'ingredients': 'Ингридиент не существует.'}
-COUNT_AMOUNT = {'amount': 'Количество ингредиентов должно быть больше нуля'}
-TAG_FIELD = {'tags': 'Выберите пожалуйстя хотя бы 1 тэг для рецепта'}
-TAG_NO_EXISTS = {'tags': 'Тег не существует.'}
-TAG_UNIQUE = {'tags': 'Выбранный вами тэг не является уникальным.'}
-COUNT_COOKING_TIME = {'cooking_time': 'Время приготовления должно быть => 1 минуты'}
-ERROR_SUBSCRIBE_HIMSELF = {'message': 'Вы не можете подписаться на самого себя'}
-ERROR_SUBSCRIBE_ANOTHER_USER = {'message': 'Вы уже подписаны на данного пользователя'}
-RECIPE_NOT_FOUND = {'errors': 'Рецепт не найден'}
-RECIPE_EXISTS = {'errors': 'Рецепт уже добавлен в список'},
-RECIPE_NO_IN_FAVORITE = {'errors': 'Рецепта нет в избранных.'}
-RECIPE_NO_IN_SHOPPING_CART = {'errors': 'Рецепта нет в списке покупок.'}
-SUBSCRIBE_EXISTS = {'errors': 'Вы подписаны на этого автора'}
-SUBSCRIBE_NO_EXISTS = {'errors': 'Вы не подписаны на данного автора.'}
-NEW_PASSWORD_NOT_VALID = {'errors': 'Введеные вами данные не корректны.'}

@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django_filters import rest_framework as filters
-from recipes.models import Recipe, Tag
 from rest_framework.filters import SearchFilter
-from users.models import User
+
+from recipes.models import Recipe, Tag
+
+User = get_user_model()
 
 
 class IngredientFilter(SearchFilter):
@@ -29,12 +32,12 @@ class RecipeFilter(filters.FilterSet):
 
     def get_check_favorited(self, queryset, name, value):
         """Проверка наличия рецепта в избранном."""
-        if value:
+        if self.request.user.is_authenticated and value:
             return queryset.filter(favorites__user=self.request.user)
         return queryset
 
     def get_check_shopping_cart(self, queryset, name, value):
         """Проверка наличия рецепта в списке покупок."""
-        if value:
+        if self.request.user.is_authenticated and value:
             return queryset.filter(shoppingcart__user=self.request.user)
         return queryset

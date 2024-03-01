@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from foodgram.settings import MAX_LEAGHT_EMAIL, MAX_LEAGHT_USER_PARAMETRS
+from django.db.models import F, Q
+
+from users.constants import MAX_LEAGHT_EMAIL, MAX_LEAGHT_USER_PARAMETRS
 
 from .validators import validate_username
 
@@ -38,12 +40,6 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ('username',)
-        constraints = [
-            models.UniqueConstraint(
-                fields=('username', 'email'),
-                name='username_email_unique'
-            )
-        ]
 
     def __str__(self):
         return self.username
@@ -67,11 +63,16 @@ class Subscribe(models.Model):
     class Meta:
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
-        ordering = ('user',)
+        ordering = ('user', 'author')
         constraints = [
             models.UniqueConstraint(
                 fields=('user', 'author'),
-                name='subscribe_unique')
+                name='subscribe_unique'
+            ),
+            models.CheckConstraint(
+                check=~Q(user=F('author')),
+                name='user_not_follow_self'
+            )
         ]
 
     def __str__(self):

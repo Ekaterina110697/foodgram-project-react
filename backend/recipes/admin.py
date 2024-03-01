@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (Ingredient, Recipe, RecipeIngredient, Tag, UserFavorites,
-                     UserShoppingCart)
+from recipes.models import (Ingredient, Recipe, RecipeIngredient, Tag,
+                            UserFavorites, UserShoppingCart)
 
 admin.site.empty_value_display = 'Не задано'
 

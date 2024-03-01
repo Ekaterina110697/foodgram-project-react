@@ -9,9 +9,4 @@ def validate_username(value):
             ('Не допустимые символы в имени пользователя'),
             params={'value': value},
         )
-    if value == 'me':
-        raise ValidationError(
-            ('Имя пользователя не может быть me'),
-            params={'value': value},
-        )
     return value
