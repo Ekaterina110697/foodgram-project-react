@@ -116,7 +116,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return ReadRecipeSerializer
 
     def create_favorite_and_shopping_cart(self, request,
-                                         pk, serializer_class):
+                                          pk, serializer_class):
         context = {'request': request}
         recipe = get_object_or_404(Recipe, id=pk)
         data = {
@@ -150,7 +150,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 UserFavoritesSerializer
             )
         if request.method == 'DELETE':
-            return self.remove_favorite_and_shopping_cart(request, pk, 
+            return self.remove_favorite_and_shopping_cart(request, pk,
                                                           UserFavorites)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
