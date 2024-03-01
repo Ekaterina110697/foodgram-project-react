@@ -120,7 +120,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         context = {'request': request}
         recipe = get_object_or_404(Recipe, id=pk)
         data = {
-            'author': request.user.id,
+            'user': request.user.id,
             'recipe': recipe.id
         }
         serializer = serializer_class(data=data, context=context)
@@ -130,7 +130,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def remove_favorite_and_shopping_cart(self, request, pk, model):
         model = model.objects.filter(
-            author=request.user.id,
+            user=request.user.id,
             recipe=get_object_or_404(Recipe, id=pk))
         if model.exists():
             model.delete()

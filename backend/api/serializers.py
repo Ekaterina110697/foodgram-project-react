@@ -243,7 +243,7 @@ class UserShoppingCartSerializer(serializers.ModelSerializer):
 
     def validate_shopping_cart(self, data):
         if UserShoppingCart.objects.filter(
-            author=data['author'],
+            author=data['user'],
             recipe=data['recipe']
         ).exists():
             raise serializers.ValidationError(RECIPE_EXISTS)
@@ -264,7 +264,7 @@ class UserFavoritesSerializer(serializers.ModelSerializer):
 
     def validate_favorite(self, data):
         if UserFavorites.objects.filter(
-            author=data['author'],
+            author=data['user'],
             recipe=data['recipe']
         ).exists():
             raise serializers.ValidationError(RECIPE_EXISTS)
