@@ -53,7 +53,7 @@ docker compose exec backend cp -r /app/collected_static/. /backend_static/static
 Выполните миграцию и заполните базу данных игредиентами:
 
 ```
-docker-compose exec backend python manage.py makemigrations
+docker compose exec backend python manage.py makemigrations
 docker compose exec backend python manage.py migrate
 ```
 ```
