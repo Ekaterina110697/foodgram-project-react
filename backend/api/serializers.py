@@ -236,8 +236,8 @@ class ReadRecipeSerializer(serializers.ModelSerializer):
         return (request
                 and request.user.is_authenticated
                 and UserFavorites.objects.filter(
-                   user=request.user,
-                   recipe=obj
+                    user=request.user,
+                    recipe=obj
                 ).exists()
                 )
 
@@ -246,8 +246,8 @@ class ReadRecipeSerializer(serializers.ModelSerializer):
         return (request
                 and request.user.is_authenticated
                 and UserShoppingCart.objects.filter(
-                   user=request.user,
-                   recipe=obj
+                    user=request.user,
+                    recipe=obj
                 ).exists()
                 )
 
