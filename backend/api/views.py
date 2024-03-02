@@ -153,7 +153,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
                                    UserFavoritesSerializer)
         elif request.method == 'DELETE':
             return self.remove_recipe(request, pk, UserFavorites)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(
         detail=True,
@@ -166,7 +165,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
                                    UserShoppingCartSerializer)
         elif request.method == 'DELETE':
             return self.remove_recipe(request, pk, UserShoppingCart)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(
         detail=False,
