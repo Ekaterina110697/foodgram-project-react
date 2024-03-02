@@ -28,7 +28,7 @@ class UserProfileSerializer(UserSerializer):
         request = self.context.get('request')
         return (
             request
-            and request.user.is_authenticated 
+            and request.user.is_authenticated
             and Subscribe.objects.filter(
                 user=request.user,
                 author=obj

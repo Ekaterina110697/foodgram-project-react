@@ -39,7 +39,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
     def add_favourite_count(self, obj):
         return UserFavorites.objects.filter(recipe=obj).count()
-    add_favourite_count.short_description = 'Добавлений избранное'
+    add_favourite_count.short_description = 'Добавлений в избранное'
 
 
 @admin.register(UserFavorites)
