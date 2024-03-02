@@ -84,7 +84,6 @@ class UserSubscribeViewSet(UserViewSet):
             if subscribe.exists():
                 subscribe.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
-
             return Response(SUBSCRIBE_NO_EXISTS,
                             status=status.HTTP_400_BAD_REQUEST)
 
