@@ -62,6 +62,7 @@ class UserSubscribeViewSet(UserViewSet):
     def subscribe(self, request, id):
         user = self.request.user
         author = get_object_or_404(User, id=id)
+        subscribe = Subscribe.objects.filter(user=user, author=author)
         if request.method == 'POST':
             data = {
                 'user': request.user.id,
@@ -80,8 +81,6 @@ class UserSubscribeViewSet(UserViewSet):
                 response.data, status=status.HTTP_201_CREATED
             )
         elif request.method == 'DELETE':
-            subscribe = Subscribe.objects.filter(user=user,
-                                                 author=author)
             if subscribe.exists():
                 subscribe.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
