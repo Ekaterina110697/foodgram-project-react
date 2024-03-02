@@ -37,6 +37,10 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', 'tags',)
     inlines = (RecipeIngredientInline,)
 
+    def add_favourite_count(self, obj):
+        return UserFavorites.objects.filter(recipe=obj).count()
+    add_favourite_count.short_description = 'Добавлений избранное'
+
 
 @admin.register(UserFavorites)
 class UserFavoritesAdmin(admin.ModelAdmin):

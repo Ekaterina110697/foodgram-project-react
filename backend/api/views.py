@@ -65,7 +65,7 @@ class UserSubscribeViewSet(UserViewSet):
         subscribe = Subscribe.objects.filter(user=user, author=author)
         if request.method == 'POST':
             data = {
-                'user': request.user.id,
+                'user': user.id,
                 'author': id
             }
             serializer = AddRemoveSubcribeSerializer(
@@ -79,12 +79,10 @@ class UserSubscribeViewSet(UserViewSet):
             return Response(
                 response.data, status=status.HTTP_201_CREATED
             )
-        elif request.method == 'DELETE':
-            if subscribe.exists():
-                subscribe.delete()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(SUBSCRIBE_NO_EXISTS,
-                            status=status.HTTP_400_BAD_REQUEST)
+        if subscribe.delete():
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(SUBSCRIBE_NO_EXISTS,
+                        status=status.HTTP_400_BAD_REQUEST)
 
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
@@ -148,8 +146,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if request.method == 'POST':
             return self.add_recipe(request, pk,
                                    UserFavoritesSerializer)
-        elif request.method == 'DELETE':
-            return self.remove_recipe(request, pk, UserFavorites)
+        return self.remove_recipe(request, pk, UserFavorites)
 
     @action(
         detail=True,
@@ -160,8 +157,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         if request.method == 'POST':
             return self.add_recipe(request, pk,
                                    UserShoppingCartSerializer)
-        elif request.method == 'DELETE':
-            return self.remove_recipe(request, pk, UserShoppingCart)
+        return self.remove_recipe(request, pk, UserShoppingCart)
 
     @action(
         detail=False,
