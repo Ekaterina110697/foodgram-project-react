@@ -69,8 +69,7 @@ class UserSubscribeViewSet(UserViewSet):
                 'author': id
             }
             serializer = AddRemoveSubcribeSerializer(
-                data=data,
-                context={'request': request}
+                data=data, context={'request': request}
             )
             serializer.is_valid(raise_exception=True)
             serializer.save()
