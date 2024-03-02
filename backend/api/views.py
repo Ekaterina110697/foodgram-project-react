@@ -60,6 +60,8 @@ class UserSubscribeViewSet(UserViewSet):
         permission_classes=(IsAuthenticated,)
     )
     def subscribe(self, request, id):
+        user = self.request.user
+        author = get_object_or_404(User, id=id)
         if request.method == 'POST':
             data = {
                 'user': request.user.id,
@@ -71,7 +73,6 @@ class UserSubscribeViewSet(UserViewSet):
             )
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            author = get_object_or_404(User, id=id)
             response = SubscribesListSerializer(
                 author, context={'request': request}
             )
@@ -79,8 +80,7 @@ class UserSubscribeViewSet(UserViewSet):
                 response.data, status=status.HTTP_201_CREATED
             )
         elif request.method == 'DELETE':
-            author = get_object_or_404(User, id=id)
-            subscribe = Subscribe.objects.filter(user=self.request.user,
+            subscribe = Subscribe.objects.filter(user=user,
                                                  author=author)
             if subscribe.exists():
                 subscribe.delete()
