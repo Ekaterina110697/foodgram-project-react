@@ -7,5 +7,5 @@ TAG_UNIQUE = {'tags': 'Выбранный вами тэг не является 
 RECIPE_EXISTS = {'errors': 'Рецепт уже добавлен в список'},
 SUBSCRIBE_EXISTS = {'errors': 'Вы подписаны на этого автора'}
 SUBSCRIBE_NO_EXISTS = {'errors': 'Вы не подписаны на данного автора.'}
-ERROR_SUBSCRIBE_HIMSELF = {'message': 
+ERROR_SUBSCRIBE_HIMSELF = {'message':
                            'Вы не можете подписаться на самого себя'}
