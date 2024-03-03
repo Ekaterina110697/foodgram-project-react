@@ -62,7 +62,7 @@ class UserSubscribeViewSet(UserViewSet):
     def subscribe(self, request, id):
         user = self.request.user
         author = get_object_or_404(User, id=id)
-        subscribe = Subscribe.objects.filter(user=user, author=author) 
+        subscribe = Subscribe.objects.filter(user=user, author=author)
         if request.method == 'POST':
             data = {
                 'user': user.id,
