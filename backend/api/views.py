@@ -79,10 +79,13 @@ class UserSubscribeViewSet(UserViewSet):
             return Response(
                 response.data, status=status.HTTP_201_CREATED
             )
-        if subscribe.delete():
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(SUBSCRIBE_NO_EXISTS,
-                        status=status.HTTP_400_BAD_REQUEST)
+        remove_tuple = Subscribe.objects.filter(
+            user=user, author=author
+        ).delete()
+        if remove_tuple[0] == 0:
+            return Response(SUBSCRIBE_NO_EXISTS,
+                            status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
@@ -132,10 +135,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
         model = model.objects.filter(
             user=request.user.id,
             recipe=get_object_or_404(Recipe, id=pk))
-        if model.exists():
-            model.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        remove_tuple = model.delete()
+        if remove_tuple[0] == 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(
         detail=True,
