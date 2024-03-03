@@ -62,7 +62,6 @@ class UserSubscribeViewSet(UserViewSet):
     def subscribe(self, request, id):
         user = self.request.user
         author = get_object_or_404(User, id=id)
-        subscribe = Subscribe.objects.filter(user=user, author=author)
         if request.method == 'POST':
             data = {
                 'user': user.id,
@@ -79,10 +78,10 @@ class UserSubscribeViewSet(UserViewSet):
             return Response(
                 response.data, status=status.HTTP_201_CREATED
             )
-        remove_tuple = Subscribe.objects.filter(
+        tuple = Subscribe.objects.filter(
             user=user, author=author
         ).delete()
-        if remove_tuple[0] == 0:
+        if tuple[0] == 0:
             return Response(SUBSCRIBE_NO_EXISTS,
                             status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -135,8 +134,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         model = model.objects.filter(
             user=request.user.id,
             recipe=get_object_or_404(Recipe, id=pk))
-        remove_tuple = model.delete()
-        if remove_tuple[0] == 0:
+        tuple = model.delete()
+        if tuple[0] == 0:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
