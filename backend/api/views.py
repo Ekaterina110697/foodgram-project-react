@@ -62,6 +62,7 @@ class UserSubscribeViewSet(UserViewSet):
     def subscribe(self, request, id):
         user = self.request.user
         author = get_object_or_404(User, id=id)
+        subscribe = Subscribe.objects.filter(user=user, author=author) 
         if request.method == 'POST':
             data = {
                 'user': user.id,
@@ -78,9 +79,7 @@ class UserSubscribeViewSet(UserViewSet):
             return Response(
                 response.data, status=status.HTTP_201_CREATED
             )
-        tuple = Subscribe.objects.filter(
-            user=user, author=author
-        ).delete()
+        tuple = subscribe.delete()
         if tuple[0] == 0:
             return Response(SUBSCRIBE_NO_EXISTS,
                             status=status.HTTP_400_BAD_REQUEST)
